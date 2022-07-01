@@ -72,6 +72,14 @@ async function run() {
       res.send(result);
     });
     // delete-billing end
+    // billing-list-count-start
+    app.get("/billing-list-count", async (req, res) => {
+      const query = {};
+      const cursor = billingCollection.find({});
+      const count = await cursor.count();
+      res.send({ count });
+    });
+    // billing-list-count-end
   } finally {
     // await client.close();
   }
